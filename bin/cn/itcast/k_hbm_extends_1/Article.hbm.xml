@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itcast.k_hbm_extends_1">
+	
+	<!-- 
+		继承结构映射：整个继承结构一张表
+		discriminator-value属性：指定哪个值表示当前类型
+	 -->
+	<class name="Article" table="article" discriminator-value="Article"> 
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 指定一个用于鉴别是什么类型的列 -->
+		<discriminator column="_class" type="string"></discriminator>
+		<property name="title"></property>
+		<property name="content" type="text" length="5000"></property>
+		
+		<!-- 子类：Topic -->
+		<subclass name="Topic" discriminator-value="Topic">
+			<property name="type"></property>
+		</subclass>
+
+		<!-- 子类：Reply -->
+		<subclass name="Reply" discriminator-value="Reply">
+			<property name="floor"></property>
+		</subclass>
+		
+	</class>
+
+</hibernate-mapping>

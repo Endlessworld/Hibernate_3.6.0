@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<!-- name是类名，table是对应的表名 -->
+	<class name="cn.itcast.d_hbm_property.User" table="user">
+	
+		<id name="id" type="int" column="id">
+            <generator class="native"/>
+		</id>
+		<!-- 
+			name：对象中的属性名，必须要有
+			type：数据的类型，不写时会自动检测
+			column：对应的列名，不写时默认为属性的名称
+			not-null：true/false，是否有非空约束，默认为false
+			length：长度，默认为255
+		-->
+		<!--
+		<property name="name" type="string" column="name" not-null="true" length="35"/>
+		<property name="name" type="string">
+			<column name="name_" not-null="true" length="55"></column>
+		</property>		
+		 -->
+		<property name="name"></property>		
+		<property name="gender"></property>
+		<!-- 日期要指定什么类型 -->
+		<property name="birthday" type="date"></property>
+		<!-- 大文本类型，最好指定长度 -->
+		<property name="desc" column="`desc`" type="text" length="5000"></property>
+		<!-- 二进制类型，最好指定长度 -->
+		<property name="photo" type="binary" length="512000"></property>
+		
+	</class>
+	
+</hibernate-mapping>

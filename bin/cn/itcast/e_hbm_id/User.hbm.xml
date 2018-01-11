@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="cn.itcast.e_hbm_id.User" table="user">
+	
+		<!-- 映射主键，generator子元素是指定主键生成策略的 -->
+		<id name="id">
+			<!-- identity，使用数据库的自动增长，在保存时会忽略手工指定的主键值而由数据库生成 
+				要求此属性要是数字类型
+            <generator class="identity"/>
+			-->
+            <!-- assigned，手工指定，比如指定UUID 
+            <generator class="assigned"/>
+            -->
+            <!-- uuid，由Hibernate生成UUID并指定为主键值，要求此属性要是String型 
+            <generator class="uuid"/>
+            -->
+            <!-- hilo，高低位算法生成主键，需要用到一个额外的表，所有的数据库都可以使用这种类型 
+            <generator class="hilo">
+                <param name="table">hi_value</param>
+                <param name="column">next_value</param>
+                <param name="max_lo">100</param>
+       		</generator>
+            -->
+            <!-- native，根据底层数据库的能力选择 identity、sequence 或者 hilo 中的一个 -->
+            <generator class="native"/>
+		</id>
+		
+		<property name="name"></property>		
+	</class>
+	
+</hibernate-mapping>

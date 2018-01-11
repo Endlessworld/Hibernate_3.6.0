@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itcast.k_hbm_extends_2">
+	
+	<!-- 
+		继承结构映射：每个类一张表，抽象也对应表。
+		每个类的映射中都要写表名。
+		子类映射中要指定一个外键列<key column="id"></key>
+	 -->
+	<class name="Article" table="article"> 
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="title"></property>
+		<property name="content" type="text" length="5000"></property>
+		
+		<!-- 子类：Topic -->
+		<joined-subclass name="Topic" table="topic">
+			<key column="id"></key>
+			<property name="type"></property>
+		</joined-subclass>
+
+		<!-- 子类：Reply -->
+		<joined-subclass name="Reply" table="reply">
+			<key column="id"></key>
+			<property name="floor"></property>
+		</joined-subclass>
+		
+	</class>
+
+</hibernate-mapping>

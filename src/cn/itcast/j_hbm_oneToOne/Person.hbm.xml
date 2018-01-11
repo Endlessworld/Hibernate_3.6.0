@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itcast.j_hbm_oneToOne">
+
+	<class name="Person" table="person">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		
+		<!-- idCard属性，表达的是Person与IdCard的一对一。
+			采用基于外键的一对一映射方式。
+			
+			无外键方，使用one-to-one，property-ref写的是对方映射中表达此一对一的属性
+			<one-to-one name="idCard" class="IdCard" property-ref="person"></one-to-one>
+		 -->
+		 
+		 <!-- idCard属性，表达的是Person与IdCard的一对一。
+			采用基于主键的一对一映射方式。
+		 -->
+		 <one-to-one name="idCard" class="IdCard"></one-to-one>
+		
+	</class>
+
+</hibernate-mapping>

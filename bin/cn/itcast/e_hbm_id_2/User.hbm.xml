@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="cn.itcast.e_hbm_id_2.User" table="user">
+	
+		<!-- 映射联合主键 -->
+		<composite-id>
+			<key-property name="firstName" type="string"></key-property>
+			<key-property name="lastName" type="string"></key-property>
+		</composite-id>
+		
+		<property name="gender"></property>		
+	</class>
+	
+</hibernate-mapping>

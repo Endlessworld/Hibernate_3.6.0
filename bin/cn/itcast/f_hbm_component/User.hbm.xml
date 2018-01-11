@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="cn.itcast.f_hbm_component.User" table="user">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+
+		<!-- 组成关系映射 -->
+		<component name="userAddress" class="cn.itcast.f_hbm_component.UserAddress">
+			<property name="address"></property>
+			<property name="code"></property>
+			<property name="phone"></property>
+		</component>
+
+	</class>
+
+</hibernate-mapping>

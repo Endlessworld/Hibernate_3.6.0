@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<!-- 
+		lazy属性：默认为true，表示本类支持类级别的懒加载。
+	 -->
+	<class name="cn.itcast.l_session_objmanage.User" table="user" lazy="false">
+		<id name="id">
+            <generator class="native"/>
+		</id>
+		<property name="name"/>
+	</class>
+	
+</hibernate-mapping>

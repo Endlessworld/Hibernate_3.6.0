@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itcast.k_hbm_extends_3">
+	
+	<!-- 
+		继承结构映射：每个具体类一张表，抽象不对应表。
+		如果类是抽象的，就要写上abstract="true"，这样就不会创建表了，也不需要table属性了。
+		这时不能使用identity主键生成策略，因为继承结构映射要求在整个继承结构中，所有数据的主键值不能重复。
+	 -->
+	<class name="Article" table="article"> 
+		<id name="id">
+			<!-- increment策略，由Hibernate维护的主键增长 -->
+			<generator class="increment"></generator>
+		</id>
+		<property name="title"></property>
+		<property name="content" type="text" length="5000"></property>
+		
+		<!-- 子类：Topic -->
+		<union-subclass name="Topic" table="topic">
+			<property name="type"></property>
+		</union-subclass>
+
+		<!-- 子类：Reply -->
+		<union-subclass name="Reply" table="reply">
+			<property name="floor"></property>
+		</union-subclass>
+		
+	</class>
+
+</hibernate-mapping>

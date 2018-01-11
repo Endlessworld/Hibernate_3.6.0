@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itcast.h_hbm_oneToMany">
+
+	<class name="Department" table="department">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		
+		<!-- employees属性，Set集合，表达的是Department与Employee的一对多
+			inverse属性：true表示自己是否放弃维护关联关系，默认为false。
+			
+			cascade属性：级联，表示对当前对象做某操作时，是否对关联的这个对象也做相同的操作。
+				默认值为none，表示没有级联。
+				可以设为
+					save-update：	对本对象做save()、update()、或saveOrUpdate()时，对这个关联对象也做saveOrUpdate()操作。
+					delete：			对本对象做delete()时，对这个关联对象也做delete()操作。
+					delete-orphan：	当关联的对象移除与本对象的关系时，就成了孤儿，就会被删除（注意，只会删除本Session中新产生的孤儿对象）。	
+					all：			所有的级联，但不包括删除孤儿。
+					all-delete-orphan：所有的级联，包括删除孤儿。
+		 -->
+		<set name="employees" inverse="false" cascade="save-update,delete-orphan">
+			<key column="departmentId"></key>
+			<one-to-many class="Employee"/>
+		</set>
+
+	</class>
+
+</hibernate-mapping>
